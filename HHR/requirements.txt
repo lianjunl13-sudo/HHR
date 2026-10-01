@@ -1,0 +1,11 @@
+accelerate==1.13.0
+datasets==4.8.5
+einops==0.8.2
+fastchat==0.1.0
+ninja==1.13.0
+numpy==2.2.6
+pybind11==3.0.4
+sentencepiece==0.2.1
+torch==2.7.1
+transformers==5.13.0
+triton==3.3.1
