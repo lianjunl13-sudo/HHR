@@ -189,7 +189,8 @@ def original_loss(query, key, rotation, weight):
     scale = gram.diagonal(dim1=-2, dim2=-1).mean(dim=-1, keepdim=True).clamp_min(1e-6)
     hash_orthogonal = (gram / scale.unsqueeze(-1) - torch.eye(weight.shape[-1], device=weight.device)).square().mean()
     rotation_regularizer = (rotation - torch.eye(128, device=rotation.device)).square().mean()
-    total = paper2 + token_rank + .35 * listwise + quest_miss + .10 * quest_slack + .20 * complementarity + .02 * quantization + .01 * balance + .01 * decorrelation + .01 * hash_orthogonal + .001 * rotation_regularizer
+    # total = paper2 + token_rank + .35 * listwise + quest_miss + .10 * quest_slack + .20 * complementarity + .02 * quantization + .01 * balance + .01 * decorrelation + .01 * hash_orthogonal + .001 * rotation_regularizer
+    total = (quest_miss+ 0.05 * quest_slack+ 0.25 * complementarity)
     return total, {"paper2": paper2, "rank": token_rank, "listwise": listwise, "miss": quest_miss, "slack": quest_slack, "comp": complementarity}
 
 
